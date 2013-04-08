@@ -8,35 +8,7 @@
   <description>tell project set on git </description>
   <build>
   	<plugins>
-  		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-war-plugin</artifactId>
-  			<version>2.2</version>
-  			<configuration>
-					<webappDirectory>webapp</webappDirectory>
-					<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
-					<archive>
-						<manifestEntries>
-							<Build-Number>${project.artifactId}-${project.version}-${buildNumber}
-							</Build-Number>
-						</manifestEntries>
-					</archive>
-					<warName>${project.artifactId}</warName>
-					<!-- The jar that don't need to include to package -->
-					<!-- warSourceExcludes>*/lib/analyzer-2.0.4.jar</warSourceExcludes -->
-					<webResources>
-						<resource>
-							<!-- liborary in project -->
-							<directory>lib</directory>
-
-							<!--filtering>true</filtering -->
-
-							<!-- target path -->
-							<targetPath>WEB-INF/lib</targetPath>
-						</resource>
-					</webResources>
-				</configuration>
-  		</plugin>
+  		
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-eclipse-plugin</artifactId>
@@ -84,6 +56,25 @@
 					<source>1.6</source>
 					<target>1.6</target>
 					<encoding>UTF-8</encoding>
+				</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<version>2.2</version>
+  			<configuration>
+					<webappDirectory>WebContent</webappDirectory>
+					<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
+					<archive>
+						<manifestEntries>
+							<Build-Number>${project.artifactId}-${project.version}
+							</Build-Number>
+						</manifestEntries>
+					</archive>
+					<warName>${project.artifactId}</warName>
+					<!-- The jar that don't need to include to package -->
+					<!-- warSourceExcludes>*/lib/analyzer-2.0.4.jar</warSourceExcludes -->
+					
 				</configuration>
   		</plugin>
   	</plugins>
