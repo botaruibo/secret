@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Tell</groupId>
+  <artifactId>Tell</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>tell</name>
+  <description>tell project set on git </description>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<version>2.3</version>
+  			<configuration>
+					<webappDirectory>webapp</webappDirectory>
+					<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
+					<archive>
+						<manifestEntries>
+							<Build-Number>${project.artifactId}-${project.version}-${buildNumber}
+							</Build-Number>
+						</manifestEntries>
+					</archive>
+					<warName>${project.artifactId}</warName>
+					<!-- The jar that don't need to include to package -->
+					<!-- warSourceExcludes>*/lib/analyzer-2.0.4.jar</warSourceExcludes -->
+					<webResources>
+						<resource>
+							<!-- liborary in project -->
+							<directory>lib</directory>
+
+							<!--filtering>true</filtering -->
+
+							<!-- target path -->
+							<targetPath>WEB-INF/lib</targetPath>
+						</resource>
+					</webResources>
+				</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-eclipse-plugin</artifactId>
+  			<version>2.9</version>
+  			<configuration>
+				<downloadSources>true</downloadSources>
+			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>build-helper-maven-plugin</artifactId>
+  			<version>1.8</version>
+  			<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/src/tell</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/src/test</source>
+							</sources>
+						</configuration>
+					</execution>			
+				</executions>
+  		</plugin>
+  	</plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.mahout</groupId>
+      <artifactId>mahout-core</artifactId>
+      <version>0.7</version>
+    </dependency>
+  </dependencies>
+</project>
