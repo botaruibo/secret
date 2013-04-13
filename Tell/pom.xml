@@ -45,7 +45,7 @@
 								<source>${basedir}/src/test</source>
 							</sources>
 						</configuration>
-					</execution>			
+					</execution>								
 				</executions>
   		</plugin>
   		<plugin>
@@ -76,8 +76,14 @@
 					<!-- warSourceExcludes>*/lib/analyzer-2.0.4.jar</warSourceExcludes -->
 					
 				</configuration>
-  		</plugin>
+  		</plugin>  		
   	</plugins>
+  	<resources>
+			<resource>
+				<directory>${basedir}/src/conf</directory>
+			</resource>
+	</resources>		
+	<outputDirectory>${basedir}/WebContent/WEB-INF/classes</outputDirectory>
   </build>
   <dependencies>
     <dependency>
@@ -128,4 +134,5 @@
     	<scope>compile</scope>
     </dependency>
   </dependencies>
+  
 </project>
