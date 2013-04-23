@@ -16,7 +16,7 @@ public abstract class FetchBase {
 	 * @param urlString
 	 * @return response string
 	 */
-	protected String httpGet(String urlString) {
+	protected static String httpGet(String urlString) {
 		try {
 		URL url = new URL(urlString);
 		HttpURLConnection connection = null;

@@ -17,7 +17,7 @@ public class NetEaseNewsArticleFetcher extends FetchBase {
 	 * @param newsList, the news list item. each itme contain docid/category and digest
 	 * @return a list of article items--<NetEaseNewsArticleItem>
 	 */
-	public ArrayList<NetEaseNewsArticleItem> fetchArticleItem(List<NetEaseNewsListItem> newsList) {
+	public static ArrayList<NetEaseNewsArticleItem> fetchArticleItem(List<NetEaseNewsListItem> newsList) {
         ArrayList<NetEaseNewsArticleItem> news = new ArrayList<NetEaseNewsArticleItem>();
 		
 		String urlPrefix = NetEaseNewsArticleItem.urlBase.endsWith("/") ? NetEaseNewsArticleItem.urlBase : NetEaseNewsArticleItem.urlBase + "/" ;
@@ -65,7 +65,7 @@ public class NetEaseNewsArticleFetcher extends FetchBase {
 		return news;
 	}
 	
-	private String preProcessBody(String body, String link) {
+	private static String preProcessBody(String body, String link) {
 		if(body == null || body.trim().isEmpty()){
 			return body;
 		}
@@ -81,7 +81,7 @@ public class NetEaseNewsArticleFetcher extends FetchBase {
 		return body;
 	}
 
-	private String cleanLink(String body, String link) {
+	private static String cleanLink(String body, String link) {
 		try {
 			JSONArray jsonAry = new JSONArray(link);
 			
@@ -100,14 +100,14 @@ public class NetEaseNewsArticleFetcher extends FetchBase {
 		return body;		
 	}
 
-	private String cleanMedia(String body) {
+	private static String cleanMedia(String body) {
 		//the img and video tag both like "<!--(.*)-->"
 		//other tag like "<p>" "</p>" "<br/>"
 		return body.replaceAll("<!--(.*)-->", "");		
 		
 	}
 
-	private String cleanP(String body) {
+	private static String cleanP(String body) {
 		body = body.replace("<p>", "");
 		body = body.replace("<P>", "");
 		body = body.replace("</p>", "\n");

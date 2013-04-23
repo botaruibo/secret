@@ -11,10 +11,12 @@ import java.util.ArrayList;
 
 import org.jfree.util.Log;
 
+import com.tell.fetch.NetEaseLocalNewsFetcher;
 import com.tell.fetch.NetEaseNewsArticleFetcher;
 import com.tell.fetch.NetEaseNewsArticleItem;
 import com.tell.fetch.NetEaseNewsListFetcher;
 import com.tell.fetch.NetEaseNewsListItem;
+import com.tell.preprocess.SmartCN;
 
 public class Test {
 
@@ -31,13 +33,15 @@ public class Test {
 	public static void main(String[] args) throws IOException {
 		NetEaseNewsListFetcher listFetcher = new NetEaseNewsListFetcher();
 		ArrayList<NetEaseNewsListItem> test = listFetcher.fetchListItem();
-		NetEaseNewsArticleFetcher articleFetcher = new NetEaseNewsArticleFetcher();
-		ArrayList<NetEaseNewsArticleItem> news = articleFetcher.fetchArticleItem(test.subList(start, end));
+		//NetEaseNewsArticleFetcher articleFetcher = new NetEaseNewsArticleFetcher();
+		NetEaseLocalNewsFetcher articleFetcher = new NetEaseLocalNewsFetcher();
+		ArrayList<NetEaseNewsArticleItem> news = articleFetcher.fetchLocalArticleItem();
 		
 		ObjectOutputStream out = null;
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(path + fileName));		
 			for (NetEaseNewsArticleItem item : news) {
+				item.setBody(SmartCN.parse(item.getBody()));
 				out.writeObject(item);
 //				System.out.println("link: " + item.getLink());
 //				System.out.println("body: " + item.getBody());
