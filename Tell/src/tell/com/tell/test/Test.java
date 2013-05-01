@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.jfree.util.Log;
 
@@ -17,6 +20,9 @@ import com.tell.fetch.NetEaseNewsArticleItem;
 import com.tell.fetch.NetEaseNewsListFetcher;
 import com.tell.fetch.NetEaseNewsListItem;
 import com.tell.preprocess.SmartCN;
+import com.tell.util.DailyIterator;
+import com.tell.util.SchedulerTask;
+import com.tell.util.TellTimer;
 
 public class Test {
 
@@ -31,6 +37,37 @@ public class Test {
 	 * @throws ClassNotFoundException 
 	 */
 	public static void main(String[] args) throws IOException {
+		int days[] = new int[] {
+		        Calendar.MONDAY,
+		        Calendar.TUESDAY,
+		        Calendar.WEDNESDAY,
+		        Calendar.THURSDAY,
+		        Calendar.FRIDAY
+		    }; //2,....6
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        
+		int a = Arrays.binarySearch(days, calendar.get(Calendar.DAY_OF_WEEK));
+		
+		System.out.println(a);
+		a = calendar.get(Calendar.DAY_OF_MONTH);
+		System.out.println(a);
+	/*	TellTimer tt = new TellTimer();
+		DailyIterator di = new DailyIterator(13, 14, 0);
+		
+		tt.schedule(new SchedulerTask() {
+
+			@Override
+			public void run() {
+				System.out.println("test timer");
+				
+			}			
+		}, di);
+		
 		NetEaseNewsListFetcher listFetcher = new NetEaseNewsListFetcher();
 		ArrayList<NetEaseNewsListItem> test = listFetcher.fetchListItem();
 		//NetEaseNewsArticleFetcher articleFetcher = new NetEaseNewsArticleFetcher();
@@ -73,7 +110,7 @@ public class Test {
 				in.close();
 			}
 		}		
-		deleteTmpFile(path + fileName);
+		deleteTmpFile(path + fileName); */
 	}
 
 	private static void deleteTmpFile(String file) {

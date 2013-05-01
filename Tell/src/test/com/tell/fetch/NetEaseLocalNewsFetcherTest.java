@@ -9,8 +9,7 @@ public class NetEaseLocalNewsFetcherTest {
 	@Test
 	public void test() {
 		NetEaseLocalNewsFetcher local = new NetEaseLocalNewsFetcher();
-		local.setLocation("上海");
-		
+		local.setLocation("上海");		
 		assertTrue("5LiK5rW3".equals(local.locationCode));
 	}
 }

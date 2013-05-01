@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class FetchBase {
 
-	abstract ArrayList<Object> fetch();
+	abstract public ArrayList<Object> fetch();
 	
 	/**
 	 * http get method request for urlString. 

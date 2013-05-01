@@ -49,7 +49,7 @@ public class NetEaseLocalNewsFetcher extends FetchBase {
 	}
 	
 	@Override
-	ArrayList<Object> fetch() {
+	public ArrayList<Object> fetch() {
 		// TODO Auto-generated method stub
 		return null;
 	}

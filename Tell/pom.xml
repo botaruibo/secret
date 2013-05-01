@@ -46,7 +46,19 @@
 							</sources>
 						</configuration>
 					</execution>								
-				</executions>
+					<execution>
+						<id>add-conf</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>conf</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/conf</source>
+							</sources>
+						</configuration>
+					</execution>
+  			</executions>
   		</plugin>
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
@@ -80,7 +92,7 @@
   	</plugins>
   	<resources>
 			<resource>
-				<directory>${basedir}/src/conf</directory>
+				<directory>${basedir}/conf</directory>
 			</resource>
 	</resources>		
 	<outputDirectory>${basedir}/WebContent/WEB-INF/classes</outputDirectory>
