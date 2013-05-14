@@ -1,18 +1,20 @@
 package com.tell.main;
 
-import com.tell.fetch.weather.WeatherTask;
-import com.tell.util.DailyIterator;
-import com.tell.util.SchedulerTask;
-import com.tell.util.TellTimer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * the main for test. run as a back-end thread
+ * 
+ * @author brui
+ *
+ */
 public class Starter {
+	final static Logger log = LoggerFactory.getLogger(Starter.class);
 
 	public static void main(String[] arg) {
-		TellTimer tTimer = new TellTimer();
-		//run at 6:00pm everyday
-		DailyIterator di = new DailyIterator(18, 0, 0);
-		SchedulerTask task = new WeatherTask();
-		
-		tTimer.schedule(task, di);
+		Teller teller = new Teller();
+		teller.init();
+		log.info("--------------------Teller started--------------------");
 	}
 }

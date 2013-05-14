@@ -13,6 +13,17 @@ import org.slf4j.LoggerFactory;
 public class SmartCN {
 	final static Logger log = LoggerFactory.getLogger(SmartCN.class);
 
+	/**
+	 * tokenize the src String. splite Chinese sentences to words use Lucene SmartCN component
+	 * this component supported by ICTCLAS. the API link in lucene  <a href="http://lucene.apache.org/core/old_versioned_docs/versions/3_0_0/api/contrib-smartcn/">
+	 * SmartCN API</a> 
+	 *  
+	 * @param src
+	 * 		string efore tonkenize
+	 * @return
+	 * 		string after tonkenize
+	 * 
+	 */
 	public static String parse(String src) {
 		StringReader sr = new StringReader(src);
 		StringBuffer result = new StringBuffer();
@@ -26,7 +37,6 @@ public class SmartCN {
 			while(ts.incrementToken()){
 			  String aWord = ts.getAttribute(CharTermAttribute.class).toString();	
 			  result.append(aWord + " ");
-			//  System.out.println(aWord);
 			}
 		} catch (IOException e) {
 			log.error("Tokenize the string faild, String: " + src, e);

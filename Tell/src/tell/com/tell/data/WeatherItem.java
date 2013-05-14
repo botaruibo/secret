@@ -1,11 +1,18 @@
-package com.tell.fetch.weather;
+package com.tell.data;
 
-public class WeatherItem {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.tell.message.trigger.Trigger;
+
+public class WeatherItem implements Triggerable {
+	final static Logger log = LoggerFactory.getLogger(WeatherItem.class);
+	
 	final static String sun = "晴";
 	final static String rain = "雨";
-	String location;
-	String date_y;
+	
+	String location = "";
+	String date_y = "";
 	
 	String temp1 = "";
 	String temp2 = "";
@@ -13,7 +20,10 @@ public class WeatherItem {
 	String weather2 = "";
 	String wind1 = "";
 	String wind2 = "";
+	String triggerInfo = "";
 	
+	Trigger trigger;
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
@@ -91,7 +101,7 @@ public class WeatherItem {
 		return r;
 	}
 	
-	public String isTriggered() {
+	public boolean isTriggered() {
 		boolean todayIsSunny = !weather1.contains(rain);
 		boolean tomorrowIsRain = weather2.contains(rain);
 		String result = null;
@@ -111,6 +121,20 @@ public class WeatherItem {
 		if(Integer.parseInt(todayH) > 20 && Integer.parseInt(tomorrowH) < 15) {
 			result += "有明显降温，注意加衣";
 		}
-		return result;
+		if(result == null) {
+			return false;
+		}
+		this.triggerInfo = result;
+		log.debug("trigger the conduction, trigger message: " + result);
+		return true;
+	}
+	
+	/**
+	 * you will get a message that you should delivery if isTriggered() is true.
+	 *  else, you get will empty string ""
+	 * @return
+	 */
+	public String getTriggerInfo() {
+		return trigger.getTriggerInfo();
 	}
 }

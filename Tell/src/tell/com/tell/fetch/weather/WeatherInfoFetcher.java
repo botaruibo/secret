@@ -7,13 +7,16 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tell.data.WeatherItem;
 import com.tell.fetch.FetchBase;
+import com.tell.message.trigger.Trigger;
 
 public class WeatherInfoFetcher extends FetchBase{
 	final static Logger log = LoggerFactory.getLogger(WeatherInfoFetcher.class);
 	
 	final static String urlPrefix = "http://m.weather.com.cn/data/";
 	final static String infoTitle = "weatherinfo";
+
 	static {
 		CityID.init();
 	}
@@ -22,6 +25,7 @@ public class WeatherInfoFetcher extends FetchBase{
 	 * get weather info by location
 	 * @param location
 	 * 			e.g. 杭州. must be Chinese character
+	 * 
 	 */
 	public WeatherItem fetchWeather(String location) {		
 		String urlPostfix = CityID.get(location);
@@ -44,6 +48,7 @@ public class WeatherInfoFetcher extends FetchBase{
 				return null;
 			}
 			JSONObject jsonWeatherItem = jsonObj.getJSONObject(infoTitle);
+			
 			item = new WeatherItem();
 			
 			String city = jsonWeatherItem.getString("city");

@@ -35,6 +35,15 @@ public class TellTimer {
         timer.cancel();
     }
 
+    /**
+     * schedule a task by calling the Timer.schedule(*)
+     * 
+     * @param schedulerTask
+     * 		schedule task. run the real task
+     * @param iterator
+     * 		a iterator to define when this task should run
+     * 
+     */
     public void schedule(SchedulerTask schedulerTask,
             ScheduleIterator iterator) {
 

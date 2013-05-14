@@ -14,9 +14,9 @@ import java.util.Date;
 
 import org.jfree.util.Log;
 
+import com.tell.data.NetEaseNewsArticleItem;
 import com.tell.fetch.NetEaseLocalNewsFetcher;
 import com.tell.fetch.NetEaseNewsArticleFetcher;
-import com.tell.fetch.NetEaseNewsArticleItem;
 import com.tell.fetch.NetEaseNewsListFetcher;
 import com.tell.fetch.NetEaseNewsListItem;
 import com.tell.preprocess.SmartCN;
