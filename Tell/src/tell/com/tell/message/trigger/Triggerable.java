@@ -1,4 +1,4 @@
-package com.tell.data;
+package com.tell.message.trigger;
 
 public interface Triggerable {
 	public boolean isTriggered();

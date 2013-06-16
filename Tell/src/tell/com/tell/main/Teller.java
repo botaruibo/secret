@@ -33,6 +33,8 @@ public class Teller {
 	final Map<String, ScheduleIterator> schedules = new HashMap<String, ScheduleIterator>();
 	
 	public void init() {
+		//now, all configuration info is in tell.properties. port to XML format is in our plan
+		//XML is more flexible for configuration
 		loadConfig();
 		
 		loadTask();

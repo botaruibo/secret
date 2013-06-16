@@ -2,6 +2,8 @@ package com.tell.data;
 
 import java.io.Serializable;
 
+import com.tell.message.trigger.Triggerable;
+
 
 
 public class NetEaseNewsArticleItem implements Serializable, Triggerable {

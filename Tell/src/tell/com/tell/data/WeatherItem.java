@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tell.message.trigger.Trigger;
+import com.tell.message.trigger.Triggerable;
 
 public class WeatherItem implements Triggerable {
 	final static Logger log = LoggerFactory.getLogger(WeatherItem.class);
